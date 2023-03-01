@@ -4,6 +4,10 @@ import bc from '../img/bc.png';
 import duke from '../img/duke.png';
 import MarchMadness from '../img/marchmadness.png';
 import players from '../img/basketballplayers.png';
+import pool1 from '../img/pool1.jpeg';
+import pool2 from '../img/pool2.jpeg';
+import pool3 from '../img/pool3.jpeg';
+import pool4 from '../img/pool4.png';
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faBars, faCubes, faArrowLeft, faPeopleGroup, faDollarSign} from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react';
@@ -13,6 +17,8 @@ function Homepage() {
     const [currentView, setCurrentView] = useState('home');
     const [viewPool, setViewPool] = useState(false);
     const [poolSideDrawer, setPoolSideDrawer] = useState(false);
+    const [teamIndex, setTeamIndex] = useState(0);
+    const [winningList, setWinningList] = useState([]);
 
     const triggerPoolView = (e) => {
 
@@ -31,6 +37,58 @@ function Homepage() {
 
 
     }
+
+    const nextTeam = () => {
+        if (teamIndex < exampleSchoolData.length - 1) {
+            setTeamIndex(teamIndex + 1);
+
+            //add the winning school to the winning list
+            setWinningList([...winningList, {
+                winner: exampleSchoolData[teamIndex].firstTeam,
+                loser: exampleSchoolData[teamIndex].secondTeam,
+                winnerImage: exampleSchoolData[teamIndex].firstImage,
+                loserImage: exampleSchoolData[teamIndex].secondImage,
+            }
+            ])
+            console.log(teamIndex)
+        }
+    }
+
+    const exampleSchoolData = [
+        {
+            firstTeam: 'Boston College',
+            secondTeam: 'Duke University',
+            firstImage: bc,
+            secondImage: duke,
+            time: 'March 16th at 2pm',
+            round: 'Round of 64',
+        },
+        {
+            firstTeam: 'Harvard University',
+            secondTeam: 'Michigan State University',
+            firstImage: bc,
+            secondImage: duke,
+            time: 'March 16th at 2pm',
+            round: 'Round of 64',
+        },
+        {
+            firstTeam: 'Syracuse University',
+            secondTeam: 'North Carolina State University',
+            firstImage: bc,
+            secondImage: duke,
+            time: 'March 16th at 2pm',
+            round: 'Round of 64',
+        },
+                {
+            firstTeam: 'Miami University',
+            secondTeam: 'University of Florida',
+            firstImage: bc,
+            secondImage: duke,
+            time: 'March 16th at 2pm',
+            round: 'Round of 64',
+        },
+            
+    ]
     return (
         <div className="homepage-container">
             <header>
@@ -63,9 +121,7 @@ function Homepage() {
                                     <div className="bets-container-header">
                                         <span>All</span>
                                         <span>Upcoming</span>
-                                        <span>Live</span>
                                         <span>Completed</span>
-                                        <span>Betting Pools</span>
                                     </div>
                                     <div className="bet-container-match">
                                         <div className="bet-container-match-header">
@@ -73,6 +129,33 @@ function Homepage() {
                                             <h4>March Madness</h4>
                                         </div>
                                         <div className="game-container">
+
+                                            <div className="game-container-pool" onClick={(e) => triggerPoolView(e)}>
+                                                <p>Start</p>
+                                                <img src={pool1}></img>
+                                                <h1>Round of 64</h1>
+                                            </div>
+
+                                            <div className="game-container-pool">
+                                                <p>TBA</p>
+                                                <img src={pool2}></img>
+                                                <h1>Round of 32</h1>
+                                            </div>
+
+                                            <div className="game-container-pool">
+                                                <p>TBA</p>
+                                                <img src={pool3}></img>
+                                                <h1>Round of 16</h1>
+                                            </div>
+
+                                            <div className="game-container-pool">
+                                                <p>TBA</p>
+                                                <img src={pool4}></img>
+                                                <h1>Finals</h1>
+                                            </div>
+                                            {
+                                                /*
+                                            
                                             <div className="bet-container-game">
                                                 <div className="game-time">
                                                     <h6>Round of 64</h6>
@@ -121,6 +204,8 @@ function Homepage() {
                                                 <img src={duke} alt="bc" />
                                                 <button>View Pools</button>
                                             </div>
+                                            */
+                                            }
                                         </div>
                                     </div>
 
@@ -135,37 +220,35 @@ function Homepage() {
                                         <FontAwesomeIcon icon={faArrowLeft} onClick={() => setViewPool(false)}/>
                                         
                                         <div className="pool-container-title">
-                                            <div className="pool-container-title-top">
-                                                <span>
-                                                    <img src={bc} alt="bc" />
-                                                    <h1>Boston College</h1>
-                                                </span>
-                                                <p>vs</p>
-                                                <span>
-                                                    <h1>Duke University</h1>
-                                                    <img src={duke} alt="bc" />
-                                                </span>
-                                            </div>
-
-                                            <h2>March 24th at 2pm</h2>
+                                            <h1>Round of 64</h1>
                                         </div>
 
-                                        <button onClick={() => setPoolSideDrawer(true)}>Create Pool</button>
+                                        
                                         
                                     </div>
                                     <div className="pool-container-content">
-                                            <div className="pool" onClick={() => setPoolSideDrawer(true)}>
-                                                pool 1
+                                        <section>
+                                            <div className="pool-container-team" onClick={() => nextTeam()}>
+                                                <h1>{exampleSchoolData[teamIndex].firstTeam}</h1> 
+                                                <img src={exampleSchoolData[teamIndex].firstImage} alt="bc" />
                                             </div>
-                                            <div className="pool" onClick={() => setPoolSideDrawer(true)}>
-                                                pool 2
+                                            <div className="pool-container-team">
+                                                <h1>{exampleSchoolData[teamIndex].secondTeam}</h1>
+                                                <img src={exampleSchoolData[teamIndex].secondImage} alt="bc" />
                                             </div>
-                                            <div className="pool" onClick={() => setPoolSideDrawer(true)}>
-                                                pool 3
-                                            </div>
-                                            <div className="pool" onClick={() => setPoolSideDrawer(true)}>
-                                                pool 4
-                                            </div>
+                                        </section>
+                                        <section>
+                                            {
+                                                winningList.map((item, index) => {
+                                                    return (
+                                                        <div className="pool-container-bet">
+                                                            <h1>{item.winner}</h1>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+
+                                        </section>
                                     </div>
                                 </div>
                             )
@@ -387,6 +470,7 @@ function Homepage() {
                     <div className="pool-side-drawer-container">
                         <div className="side-menu-background" onClick={() => setPoolSideDrawer(false)}></div>
                         <div className="pool-side-drawer">
+                            <FontAwesomeIcon icon={faArrowLeft} onClick={() => setPoolSideDrawer(false)}/>
                             <h1>Create Pool/Join Pool</h1>
                         </div>
                     </div>

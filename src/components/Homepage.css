@@ -105,6 +105,11 @@ header .svg-inline--fa:hover{
     padding: 10px;
     border-radius: 10px;
 }
+.bets-container-header span:hover {
+    background-color: #ffffff67;
+    color: #fffffffa;
+    cursor: pointer;
+}
 .bet-container-match {
     display:flex;
     flex-direction: column;
@@ -112,16 +117,72 @@ header .svg-inline--fa:hover{
 }
 .game-container { 
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-evenly;
     gap: 10px;
+    animation: fadeIn 1s;
+}
+.game-container-pool {
+    width: 200px;
+    height: 200px;
+    position:relative
+
+}
+.game-container-pool:hover {
+    cursor: pointer;
+}
+.game-container-pool:hover img {
+    filter: grayscale(55%) blur(2px) brightness(.5);
+    box-shadow: 2px 2px 20px 2px rgba(255, 255, 255, 0.6);
+}
+.game-container-pool:hover p {
+    color: #fffffffa;
+}
+.game-container-pool:hover h1 {
+    color: #fffffffa;
+}
+.game-container-pool img {
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+    border-radius: 20px;
+    filter: grayscale(90%) blur(1px) brightness(0.3);
+
+}
+.game-container-pool h1 {
+    color: #a1a1a1fa;
+    font-weight: 500;
+    text-align: center;
+    font-size: 1rem;
+    margin: 0;
+}
+.game-container-pool p{
+    position:absolute;
+    color: #fafafa4c;
+    z-index: 100;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+    margin-top: 32px;
+    font-size: 2rem;
 }
 .bet-container-match-header {
     display:flex;
     flex-direction: row;
     align-items: center;
     gap: 20px;
-    margin: 10px 0;
+    margin: 10px 0 20px 0;
     width:100%;
+}
+@keyframes fadeIn {
+    0% {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 .bet-container-match-header img {
     width: 80px;
@@ -210,7 +271,7 @@ header .svg-inline--fa:hover{
     height: 80%;
     border-radius: 15px;
     padding: 20px 20px;
-    margin-top: 20px;
+    margin: 20px 0;
     animation: slide-to-left-in .5s ease-in-out;
 }
 .pool-container-header {
@@ -225,10 +286,11 @@ header .svg-inline--fa:hover{
     color: #c7c7c7;
     font-size: 1.5rem;
     background-color: #9797973d;
-    padding: 10px;
+    padding: 6px 20px;
     border-radius: 10px;
     margin-right: 10px;
     cursor: pointer;
+    position:absolute
 }
 .pool-container-header .svg-inline--fa:hover {
     color: #ffffff;
@@ -247,7 +309,7 @@ header .svg-inline--fa:hover{
     margin: 0;
 }
 .pool-container-header img {
-    width: 40px;
+    width: 100px;
     margin: 0px 10px;
     background-color: #e2e2e2;
     padding: 5px;
@@ -264,21 +326,12 @@ header .svg-inline--fa:hover{
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    border-bottom: 2px solid #c7c7c7;
+    border-bottom: 2px solid #c7c7c752;
     padding-bottom: 10px;
+    margin-bottom: 10px;
 }
-.pool-container-title-top {
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-}
-.pool-container-header p {
-    color: #ddddddfa;
-    font-weight: 300;
-    font-size: .8rem;
-    margin: 0;
-}
+
+
 .pool-container-header button {
     background-color: transparent;
     position:absolute;
@@ -301,12 +354,58 @@ header .svg-inline--fa:hover{
 }
 .pool-container-content {
     display:flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
     width:100%;
-    height: 100%;
+
+}
+.pool-container-content section {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width:100%;
     gap: 20px;
+}
+.pool-container-team {
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    background-color: #1b182ea8;
+    box-shadow: 0 0 15px 2px rgb(0 0 0 / 20%);
+    padding: 20px 20px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.pool-container-team:hover {
+    background-color: #1b182e;
+    cursor: pointer;
+    box-shadow: 0 0 15px 2px rgba(255, 255, 255, 0.454);
+}
+.pool-container-team:hover h1 {
+    color: #ffffff;
+}
+.pool-container-team:hover img{
+    background-color: #ffffff;
+    filter:blur(0px) grayscale(0%);
+}
+.pool-container-team h1 {
+    color: #bbbbbbfa;
+    font-weight: 500;
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 0 0 10px 0;
+}
+.pool-container-team img {
+    width: 100px;
+    margin: 0px 10px;
+    background-color: #e2e2e2cd;
+    padding: 5px;
+    border-radius: 10px;
+    filter:blur(2px) grayscale(70%);
 }
 .bets-container-slide-out {
     animation: slide-to-left-out .4s ease-in-out;
@@ -592,7 +691,7 @@ header h1 {
     align-items: center;
     gap:5px;
 }
-.side-menu .svg-inline--fa {
+.side-menu .svg-inline--fa, .pool-side-drawer .svg-inline--fa {
     color: #c6c6c6fa;
     font-size: 1.2rem;
     cursor: pointer;
