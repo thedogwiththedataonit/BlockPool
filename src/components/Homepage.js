@@ -237,18 +237,42 @@ function Homepage() {
                                                 <img src={exampleSchoolData[teamIndex].secondImage} alt="bc" />
                                             </div>
                                         </section>
-                                        <section>
+                                        <table>
+                                            <tr>
+                                                <th>Team</th>
+                                                <th>Team</th>
+                                                <th>Winner</th>
+                                            </tr>
+                                            
                                             {
                                                 winningList.map((item, index) => {
                                                     return (
-                                                        <div className="pool-container-bet">
-                                                            <h1>{item.winner}</h1>
-                                                        </div>
+                                                        <tr>
+                                                            <td>
+                                                                <span>
+                                                                    <img src={bc}></img>
+                                                                    {item.winner}
+                                                                </span>
+                                                                
+                                                            </td>
+                                                            <td>
+                                                                <span>
+                                                                    <img src={duke}></img>
+                                                                    {item.loser}
+                                                                </span>
+                                                            </td>
+                                                            <td>
+                                                                <span>
+                                                                    <img src={bc}></img>
+                                                                    {item.winner}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        
                                                     )
                                                 })
                                             }
-
-                                        </section>
+                                        </table>
                                     </div>
                                 </div>
                             )
