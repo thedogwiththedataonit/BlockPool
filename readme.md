@@ -12,10 +12,18 @@ npm start
 - Add tournament style bracket
 - Redux (maybe needed)
 
+- no bets words
+- add about us page
+- add photos
+
+
 ### Deployment
 CI/CD         --> AWS Code Pipeline (listens to this branch)
+
 Hosting       --> AWS S3
+
 Cachine + SSL --> Cloudfront
+
 DNS           --> Attach route53 domain to Cloudfront
 
 
